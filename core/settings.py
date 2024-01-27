@@ -1,4 +1,3 @@
-
 import os
 from pathlib import Path
 from dotenv import load_dotenv
@@ -75,7 +74,7 @@ TEMPLATES = [
                 "django.template.context_processors.request",
                 "django.contrib.auth.context_processors.auth",
                 "django.contrib.messages.context_processors.messages",
-                "django.template.context_processors.request", 
+                "django.template.context_processors.request",
             ],
         },
     },
@@ -88,12 +87,8 @@ WSGI_APPLICATION = "core.wsgi.application"
 # https://docs.djangoproject.com/en/5.0/ref/settings/#databases
 
 DATABASES = {
-    "default": dj_database_url.config(
-        default=os.getenv("DATABASE_URL"),
-        conn_max_age=int(os.getenv("POSTGRES_CONN_MAX_AGE", 600)),
-    )
+    "default": dj_database_url.parse(os.getenv("DATABASE_URL"), conn_max_age=600),
 }
-
 
 
 # Password validation
@@ -135,8 +130,8 @@ STATICFILES_DIRS = [BASE_DIR / "static"]
 STATIC_ROOT = BASE_DIR / "staticfiles"
 STATICFILES_STORAGE = "whitenoise.storage.CompressedManifestStaticFilesStorage"
 
-MEDIA_URL = "/media/" 
-MEDIA_ROOT = BASE_DIR / "media" 
+MEDIA_URL = "/media/"
+MEDIA_ROOT = BASE_DIR / "media"
 
 
 # Default primary key field type
@@ -151,24 +146,23 @@ CORS_ORIGIN_WHITELIST = ("http://*",)
 CSRF_TRUSTED_ORIGINS = ["http://localhost:3000"]
 
 REST_FRAMEWORK = {
-"DEFAULT_PERMISSION_CLASSES": [
-"rest_framework.permissions.AllowAny",
-],
-"DEFAULT_AUTHENTICATION_CLASSES": [ 
-"rest_framework.authentication.SessionAuthentication",
-"rest_framework.authentication.TokenAuthentication",
-],
-"DEFAULT_SCHEMA_CLASS": "drf_spectacular.openapi.AutoSchema",
+    "DEFAULT_PERMISSION_CLASSES": [
+        "rest_framework.permissions.AllowAny",
+    ],
+    "DEFAULT_AUTHENTICATION_CLASSES": [
+        "rest_framework.authentication.SessionAuthentication",
+        "rest_framework.authentication.TokenAuthentication",
+    ],
+    "DEFAULT_SCHEMA_CLASS": "drf_spectacular.openapi.AutoSchema",
 }
 
-EMAIL_BACKEND = "django.core.mail.backends.console.EmailBackend" 
-SITE_ID = 1 
+EMAIL_BACKEND = "django.core.mail.backends.console.EmailBackend"
+SITE_ID = 1
 
 SPECTACULAR_SETTINGS = {
-"TITLE": "Odyssey Real Estate API",
-"DESCRIPTION": "API for listing properties",
-"VERSION": "1.0.0",
-
+    "TITLE": "Odyssey Real Estate API",
+    "DESCRIPTION": "API for listing properties",
+    "VERSION": "1.0.0",
 }
 
 
