@@ -17,8 +17,8 @@ class Property(models.Model):
     longitude = models.CharField(max_length=255)
     location_detail = models.TextField()
     title = models.TextField()
-    beds = models.CharField(blank=True, null=True)
-    baths = models.CharField(blank=True, null=True)
+    beds = models.CharField(max_length=255, blank=True, null=True)
+    baths = models.CharField(max_length=255, blank=True, null=True)
     built_area = models.CharField(max_length=255, blank=True, null=True)
     plot_area = models.CharField(max_length=255, blank=True, null=True)
     video_url = models.CharField(max_length=255, blank=True, null=True)
@@ -29,7 +29,7 @@ class Property(models.Model):
     agent_mobile = models.CharField(max_length=20)
     agent_email = models.EmailField()
     agent_reference = models.CharField(max_length=255)
-    agent_profile_picture = models.CharField(blank=True, null=True)
+    agent_profile_picture = models.CharField(max_length=255, blank=True, null=True)
 
     # Image URLs
     images = models.TextField()
